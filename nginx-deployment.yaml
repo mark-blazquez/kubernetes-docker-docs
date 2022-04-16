@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    color: green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        color: green
+    spec:
+      containers:
+        - name: nginx
+          image: markblazquez/contcmd:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: node
+              protocol: TCP
+              containerPort: 8080
+            - name: react
+              protocol: TCP
+              containerPort: 3000
+          resources:
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+            requests:
+              cpu: 100m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+  name: nginx-demo-service
+spec:
+  ports:
+    - name: node
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+    - name: react
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: nginx
+  sessionAffinity: None
+  type: NodePort
