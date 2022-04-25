@@ -2,32 +2,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: node
   labels:
-    app: nginx
+    app: node
     color: green
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx
+      app: node
   template:
     metadata:
       labels:
-        app: nginx
+        app: node
         color: green
     spec:
       containers:
-        - name: nginx
-          image: markblazquez/contfront:v1
+        - name: node
+          image: markblazquez/backendk:v2
           imagePullPolicy: IfNotPresent
           ports:
-            - name: uno
+            - name: node
               protocol: TCP
-              containerPort: 80
-            - name: dos
-              protocol: TCP
-              containerPort: 81
+              containerPort: 8080
           resources:
             limits:
               cpu: "200m"
@@ -40,18 +37,14 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-  name: nginx-demo-service
+  name: node-demo
 spec:
   ports:
-    - name: uno
-      port: 80
-      targetPort: 80
-      protocol: TCP
-    - name: dos
-      port: 81
-      targetPort: 81
+    - name: node
+      port: 8080
+      targetPort: 8080
       protocol: TCP
   selector:
-    app: nginx
+    app: node
   sessionAffinity: None
   type: NodePort

@@ -1,16 +1,12 @@
-FROM markblazquez/contdebian:v4
+FROM markblazquez/backendk
 
 # Create app directory
-WORKDIR /var/app-react/pag-kubernetes/asador
+WORKDIR /var/pag-kubernetes/
 
 
 # Bundle app source
 
 EXPOSE 8080
-EXPOSE 3000
 
-CMD [ "node", "../src/index.js" ]
-#CMD ["npm ","start"]; 
-
-
+CMD [ "node", "src/index.js" ]
 
