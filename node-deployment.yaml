@@ -32,6 +32,14 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
+          volumeMounts:
+          - mountPath: /var/pedidos.json
+            name: myfile
+      volumes:
+      - name: myfile
+        hostPath:
+          path: /var/pedidos.json
+          type: FileOrCreate
 ---
 apiVersion: v1
 kind: Service
