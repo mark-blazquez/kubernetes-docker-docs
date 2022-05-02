@@ -1,0 +1,4 @@
+FROM markblazquez/backendk
+WORKDIR /var/pag-kubernetes/
+EXPOSE 8080
+CMD [ "node", "src/index.js" ]
