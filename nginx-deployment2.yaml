@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: nginx2
   labels:
-    app: nginx
+    app: nginx2
     color: green
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx
+      app: nginx2
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx2
         color: green
     spec:
       containers:
-        - name: nginx
-          image: markblazquez/contfront:v11
+        - name: nginx2
+          image: markblazquez/contfront:v12
           imagePullPolicy: IfNotPresent
           ports:
             - name: uno
@@ -33,7 +33,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-  name: nginx-demo-service
+  name: nginx-demo-service2
 spec:
   ports:
     - name: uno
@@ -45,6 +45,6 @@ spec:
 #      targetPort: 9081
 #      protocol: TCP
   selector:
-    app: nginx
+    app: nginx2
   sessionAffinity: None
   type: NodePort
