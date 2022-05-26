@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: node
-          image: markblazquez/backendk:v2
+          image: markblazquez/backendk:v4
           imagePullPolicy: IfNotPresent
           ports:
             - name: node

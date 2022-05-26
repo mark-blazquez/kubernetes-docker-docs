@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: nginx2
-          image: markblazquez/contfront:v12
+          image: markblazquez/contfront:v13
           imagePullPolicy: IfNotPresent
           ports:
             - name: uno
