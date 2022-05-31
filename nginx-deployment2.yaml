@@ -19,15 +19,15 @@ spec:
     spec:
       containers:
         - name: nginx2
-          image: markblazquez/contfront:v13
+          image: markblazquez/frontsec:v210
           imagePullPolicy: IfNotPresent
           ports:
             - name: uno
               protocol: TCP
               containerPort: 80
-#            - name: dos
-#              protocol: TCP
-#              containerPort: 81
+            - name: dos
+              protocol: TCP
+              containerPort: 443
 ---
 apiVersion: v1
 kind: Service
@@ -38,12 +38,12 @@ spec:
   ports:
     - name: uno
       port: 80
-      targetPort: 80
+      targetPort: 81
       protocol: TCP
-#    - name: dos
-#      port: 81
-#      targetPort: 9081
-#      protocol: TCP
+    - name: dos
+      port: 443
+      targetPort: 444
+      protocol: TCP
   selector:
     app: nginx2
   sessionAffinity: None

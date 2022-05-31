@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-wildcard-host
+spec:
+  rules:
+  - host: "torre-ubuntu.ddns.net"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nginx-demo-service
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/gestion"
+        backend:
+          service:
+            name: nginx-demo-service2
+            port:
+              number: 80
