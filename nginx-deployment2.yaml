@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: nginx2
-          image: markblazquez/frontsecapa:v34
+          image: markblazquez/frontsecapa:v60
           imagePullPolicy: IfNotPresent
           ports:
             - name: uno
